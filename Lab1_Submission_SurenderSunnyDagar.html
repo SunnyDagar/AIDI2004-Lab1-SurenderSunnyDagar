@@ -1,150 +1,326 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>AIDI2004 Lab 1 Submission - Surender (Sunny) Dagar</title>
-  <style>
-    body { font-family: Arial, sans-serif; line-height: 1.6; margin: 24px; }
-    h1, h2, h3 { color: #003366; }
-    img { width: 100%; max-width: 900px; border: 1px solid #ccc; margin: 16px 0; }
-    .section { margin-bottom: 36px; }
-    .caption { font-size: 0.95rem; color: #555; margin-bottom: 12px; }
-  </style>
+<meta charset="UTF-8" />
+<title>AIDI 2004 — Lab 1: Git Version Control in Practice — Surender (Sunny) Dagar</title>
+<style>
+  @page { size: letter; margin: 18mm 16mm; }
+  * { box-sizing: border-box; }
+  body {
+    font-family: "Georgia", "Times New Roman", serif;
+    color: #1a1a1a; line-height: 1.5; margin: 0;
+    font-size: 11pt;
+  }
+  .green { color: #0b6b4f; }
+  h1.title { text-align: center; font-size: 30pt; color: #0b6b4f; margin: 0 0 4px; }
+  h2.subtitle { text-align: center; font-weight: normal; font-size: 15pt; color: #0b6b4f; margin: 0 0 28px; }
+  .doc-title { text-align: center; font-size: 19pt; font-weight: bold; margin: 20px 0 4px; }
+  .doc-sub { text-align: center; font-size: 12pt; color: #333; margin-bottom: 26px; }
+  .meta-table { margin: 0 auto 26px; border-collapse: collapse; }
+  .meta-table td { padding: 4px 14px 4px 0; vertical-align: top; }
+  .meta-table td.lbl { font-weight: bold; white-space: nowrap; }
+  .band {
+    background: #dfe8f3; color: #0b3a66; font-weight: bold;
+    padding: 7px 12px; margin: 26px 0 14px; font-size: 13pt;
+    border-radius: 2px;
+  }
+  .scenario-band {
+    background: #cfe0f0; color: #0b3a66; font-weight: bold;
+    padding: 8px 12px; margin: 30px 0 16px; font-size: 14pt; border-radius: 2px;
+  }
+  .marks { color: #1746a2; }
+  h3.step { font-size: 13pt; margin: 22px 0 8px; }
+  .cmd {
+    background: #f4f4f4; border: 1px solid #d9d9d9; border-radius: 3px;
+    font-family: "Menlo", "Consolas", monospace; font-size: 9.7pt;
+    padding: 9px 12px; margin: 8px 0; white-space: pre-wrap; word-break: break-word;
+    color: #161616;
+  }
+  .tip {
+    background: #fdf3d3; border: 1px solid #efdca0; border-radius: 3px;
+    padding: 8px 12px; margin: 8px 0; font-size: 10.5pt;
+  }
+  .note-green {
+    background: #e3f3ea; border: 1px solid #bfe2cd; border-radius: 3px;
+    padding: 10px 12px; margin: 10px 0; font-size: 10.5pt;
+  }
+  .warn { color: #c0392b; font-weight: bold; font-style: italic; }
+  .caption { font-size: 9.5pt; color: #555; margin: 12px 0 4px; }
+  .shot { width: 100%; border: 1px solid #b9c4d0; border-radius: 3px; display: block; margin: 4px 0 6px; }
+  ul { margin: 6px 0 6px 4px; padding-left: 22px; }
+  li { margin: 2px 0; }
+  code { font-family: "Menlo","Consolas",monospace; font-size: 9.7pt; background:#eef0f2; padding:0 3px; border-radius:2px; }
+  table.scheme { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 10.5pt; }
+  table.scheme th { background: #0b6b4f; color: #fff; text-align: left; padding: 6px 10px; }
+  table.scheme td { padding: 6px 10px; border-bottom: 1px solid #ddd; }
+  table.scheme tr:nth-child(even) td { background: #eef6f1; }
+  .total td { font-weight: bold; border-top: 2px solid #0b6b4f; background: #fff !important; }
+  .page-break { page-break-before: always; }
+  .step-block { page-break-inside: avoid; }
+  .footer-note { font-size: 9pt; color: #777; text-align:center; margin-top: 28px; }
+</style>
 </head>
 <body>
-  <h1>AIDI2004 Lab 1 Submission</h1>
-  <p><strong>Student:</strong> Surender (Sunny) Dagar</p>
-  <p><strong>Student ID:</strong> 101036575</p>
-  <p><strong>Date:</strong> June 1, 2026</p>
 
-  <div class="section">
-    <h2>Scenario 1: Local Repository with Branching Workflow</h2>
-    <p>Repository folder created: <code>AIDI2004-Lab1-SurenderSunnyDagar</code></p>
+<!-- ===================== TITLE PAGE ===================== -->
+<h1 class="title">AIDI 2004</h1>
+<h2 class="subtitle">AI In Enterprise Applications</h2>
 
-    <h3>Step 1: Create Project Folder</h3>
-    <p class="caption">Mock screenshot: Folder creation with name visible</p>
-    <img src="screenshots/step01.png" alt="Folder creation screenshot" />
+<div class="doc-title">Lab 1: Git Version Control in Practice</div>
+<div class="doc-sub">Git Branching Workflow with Staging and Feature Branches</div>
 
-    <h3>Step 2: Configure Git and Initialize</h3>
-    <p class="caption">Mock screenshot: git config and git init output</p>
-    <img src="screenshots/step02.png" alt="Git config and init screenshot" />
+<table class="meta-table">
+  <tr><td class="lbl">Weight:</td><td>See course shell</td></tr>
+  <tr><td class="lbl">Submission:</td><td>PDF document with all screenshots</td></tr>
+  <tr><td class="lbl">Topics Covered:</td><td>Git init, branching, staging, merging (<code>--no-ff</code>), push/pull, network graphs, branch cleanup</td></tr>
+</table>
 
-    <h3>Step 3: Create Initial Files</h3>
-    <p class="caption">Mock screenshot: README.md and .gitignore created</p>
-    <img src="screenshots/step03.png" alt="Initial files screenshot" />
+<div class="band">Student Information</div>
+<table class="meta-table">
+  <tr><td class="lbl">Name:</td><td>Surender (Sunny) Dagar</td></tr>
+  <tr><td class="lbl">Student ID:</td><td>101036575</td></tr>
+  <tr><td class="lbl">Date:</td><td>June 1, 2026</td></tr>
+  <tr><td class="lbl">GitHub (S1):</td><td>https://github.com/SunnyDagar/AIDI2004-Lab1-SurenderSunnyDagar</td></tr>
+  <tr><td class="lbl">GitHub (S2):</td><td>https://github.com/SunnyDagar/AIDI2004-Lab1-S2-SurenderSunnyDagar</td></tr>
+</table>
 
-    <h3>Step 4: Stage and Commit</h3>
-    <p class="caption">Mock screenshot: git add, git status, and commit output</p>
-    <img src="screenshots/step04.png" alt="Stage and commit screenshot" />
+<div class="band">Instructions</div>
+<ul>
+  <li>Complete <b>both</b> scenarios and include screenshots for every step.</li>
+  <li>Name appears in folder names, commit messages, and GitHub repository names so the work is identifiable.</li>
+  <li>Each step follows the commands exactly as shown in the lab.</li>
+</ul>
 
-    <h3>Step 5: Create a GitHub Repository</h3>
-    <p class="caption">Mock screenshot: GitHub repository creation page</p>
-    <img src="screenshots/step05.png" alt="GitHub repo creation screenshot" />
+<!-- ===================== SCENARIO 1 ===================== -->
+<div class="page-break"></div>
+<div class="scenario-band">Scenario 1: Create a Local Repository with Branching Workflow <span class="marks">[10 marks]</span></div>
+<p>In this scenario, a project is created from scratch, a branching workflow is set up with <code>main &rarr; staging &rarr; feature</code> branches, and everything is pushed to GitHub.</p>
 
-    <h3>Step 6: Connect and Push to GitHub</h3>
-    <p class="caption">Mock screenshot: git remote add and push output</p>
-    <img src="screenshots/step06.png" alt="Connect and push screenshot" />
+<div class="step-block">
+  <h3 class="step">Step 1: Create Your Project Folder</h3>
+  <div class="cmd">mkdir AIDI2004-Lab1-SurenderSunnyDagar
+cd AIDI2004-Lab1-SurenderSunnyDagar</div>
+  <img class="shot" src="screenshots/step01.png" alt="Step 1 folder creation" />
+</div>
 
-    <h3>Step 7: Create the Staging Branch</h3>
-    <p class="caption">Mock screenshot: staging branch creation and push</p>
-    <img src="screenshots/step07.png" alt="Create staging branch screenshot" />
+<div class="step-block">
+  <h3 class="step">Step 2: Configure Git and Initialize the Repository</h3>
+  <div class="cmd">git config --global user.name "Surender (Sunny) Dagar"
+git config --global user.email "surender.dagar@dcmail.ca"
+git config --global init.defaultBranch main
+git init</div>
+  <img class="shot" src="screenshots/step02.png" alt="Step 2 git config and init" />
+</div>
 
-    <h3>Step 8: Create a Feature Branch and Make Changes</h3>
-    <p class="caption">Mock screenshot: feature branch creation, hello.py creation, commit, and push</p>
-    <img src="screenshots/step08.png" alt="Feature branch screenshot" />
+<div class="step-block">
+  <h3 class="step">Step 3: Create Initial Project Files</h3>
+  <div class="cmd"># README.md
+# AIDI2004 Lab 1 - Surender (Sunny) Dagar
+This is my Git branching workflow lab.
 
-    <h3>Step 9: Merge Feature into Staging (--no-ff)</h3>
-    <p class="caption">Mock screenshot: merge output showing merge commit</p>
-    <img src="screenshots/step09.png" alt="Merge into staging screenshot" />
+# .gitignore
+.DS_Store
+__pycache__/
+*.pyc
+.env</div>
+  <img class="shot" src="screenshots/step03.png" alt="Step 3 initial files in editor" />
+</div>
 
-    <h3>Step 10: Merge Staging into Main (--no-ff)</h3>
-    <p class="caption">Mock screenshot: merge staging into main and push</p>
-    <img src="screenshots/step10.png" alt="Merge staging into main screenshot" />
+<div class="step-block">
+  <h3 class="step">Step 4: Stage and Commit</h3>
+  <div class="cmd">git add .
+git status
+git commit -m "Initial commit - Surender (Sunny) Dagar"</div>
+  <img class="shot" src="screenshots/step04.png" alt="Step 4 stage and commit" />
+</div>
 
-    <h3>Step 11: Clean Up the Feature Branch</h3>
-    <p class="caption">Mock screenshot: branch deletion and git branch -a verification</p>
-    <img src="screenshots/step11.png" alt="Branch cleanup screenshot" />
+<div class="step-block">
+  <h3 class="step">Step 5: Create a GitHub Repository</h3>
+  <ul>
+    <li>Repository name: <code>AIDI2004-Lab1-SurenderSunnyDagar</code></li>
+    <li>Visibility: <b>Public</b></li>
+  </ul>
+  <img class="shot" src="screenshots/step05.png" alt="Step 5 GitHub repository" />
+</div>
 
-    <h3>Step 12: View the Network Graph</h3>
-    <p class="caption">Mock screenshot: terminal git log --graph --oneline --all</p>
-    <img src="screenshots/step12.png" alt="Terminal network graph screenshot" />
-    <p class="caption">Mock screenshot: GitHub network graph</p>
-    <img src="screenshots/step13.png" alt="GitHub network graph screenshot" />
-  </div>
+<div class="step-block">
+  <h3 class="step">Step 6: Connect and Push to GitHub</h3>
+  <div class="cmd">git remote add origin https://github.com/SunnyDagar/AIDI2004-Lab1-SurenderSunnyDagar.git
+git push -u origin main</div>
+  <img class="shot" src="screenshots/step06.png" alt="Step 6 connect and push" />
+</div>
 
-  <div class="section">
-    <h2>Scenario 2: Clone, Branch, and Merge Workflow</h2>
-    <p>Repository folder created: <code>AIDI2004-Lab1-S2-SurenderSunnyDagar</code></p>
+<div class="step-block">
+  <h3 class="step">Step 7: Create the Staging Branch</h3>
+  <div class="cmd">git checkout -b staging
+git push -u origin staging</div>
+  <img class="shot" src="screenshots/step07.png" alt="Step 7 staging branch" />
+</div>
 
-    <h3>Step 1: Create a New Repository on GitHub</h3>
-    <p class="caption">Mock screenshot: GitHub repository creation page</p>
-    <img src="screenshots/step14.png" alt="Scenario 2 GitHub repo creation screenshot" />
+<div class="step-block">
+  <h3 class="step">Step 8: Create a Feature Branch and Make Changes</h3>
+  <div class="cmd">git checkout staging
+git checkout -b feature/add-hello-Surender
 
-    <h3>Step 2: Clone the Repository</h3>
-    <p class="caption">Mock screenshot: clone command and output</p>
-    <img src="screenshots/step15.png" alt="Clone repository screenshot" />
+# hello.py
+# hello.py - Created by Surender (Sunny) Dagar
+print("Hello from my feature branch!")
 
-    <h3>Step 3: Create the Staging Branch</h3>
-    <p class="caption">Mock screenshot: staging branch creation and push</p>
-    <img src="screenshots/step16.png" alt="Scenario 2 staging branch screenshot" />
+git add hello.py
+git commit -m "Add hello.py - Surender (Sunny) Dagar"
+git push -u origin feature/add-hello-Surender</div>
+  <img class="shot" src="screenshots/step08.png" alt="Step 8 feature branch" />
+</div>
 
-    <h3>Step 4: Create a Feature Branch and Add Files</h3>
-    <p class="caption">Mock screenshot: feature branch created and about.txt added</p>
-    <img src="screenshots/step17.png" alt="Scenario 2 feature branch screenshot" />
+<div class="step-block">
+  <h3 class="step">Step 9: Merge Feature into Staging (--no-ff)</h3>
+  <div class="cmd">git checkout staging
+git pull origin staging
+git merge --no-ff feature/add-hello-Surender -m "Merge feature/add-hello-Surender into staging"
+git push origin staging</div>
+  <div class="note-green"><b>Why <code>--no-ff</code>?</b> The <code>--no-ff</code> flag forces Git to create a merge commit even when a fast-forward is possible. This preserves the fact that a feature branch existed and shows the merge point in the network graph.</div>
+  <img class="shot" src="screenshots/step09.png" alt="Step 9 merge into staging" />
+</div>
 
-    <h3>Step 5: Make Additional Changes on the Feature Branch</h3>
-    <p class="caption">Mock screenshot: README update commit and push</p>
-    <img src="screenshots/step18.png" alt="Scenario 2 README update screenshot" />
+<div class="step-block">
+  <h3 class="step">Step 10: Merge Staging into Main (--no-ff)</h3>
+  <div class="cmd">git checkout main
+git pull origin main
+git merge --no-ff staging -m "Release: Merge staging into main - Surender (Sunny) Dagar"
+git push origin main</div>
+  <img class="shot" src="screenshots/step10.png" alt="Step 10 merge into main" />
+</div>
 
-    <h3>Step 6: Merge Feature into Staging (--no-ff)</h3>
-    <p class="caption">Mock screenshot: merge output showing merge commit</p>
-    <img src="screenshots/step19.png" alt="Scenario 2 merge into staging screenshot" />
+<div class="step-block">
+  <h3 class="step">Step 11: Clean Up the Feature Branch</h3>
+  <div class="cmd">git branch -d feature/add-hello-Surender
+git push origin --delete feature/add-hello-Surender
+git branch -a</div>
+  <img class="shot" src="screenshots/step11.png" alt="Step 11 cleanup" />
+</div>
 
-    <h3>Step 7: Merge Staging into Main (--no-ff)</h3>
-    <p class="caption">Mock screenshot: merge staging into main and push</p>
-    <img src="screenshots/step20.png" alt="Scenario 2 merge into main screenshot" />
+<div class="step-block">
+  <h3 class="step">Step 12: View the Network Graph</h3>
+  <div class="cmd">git log --graph --oneline --all</div>
+  <img class="shot" src="screenshots/step12.png" alt="Step 12 terminal graph" />
+  <img class="shot" src="screenshots/step13.png" alt="Step 12 GitHub network graph" />
+</div>
 
-    <h3>Step 8: Clean Up the Feature Branch</h3>
-    <p class="caption">Mock screenshot: branch deletion and verification</p>
-    <img src="screenshots/step21.png" alt="Scenario 2 branch cleanup screenshot" />
+<!-- ===================== SCENARIO 2 ===================== -->
+<div class="page-break"></div>
+<div class="scenario-band">Scenario 2: Clone, Branch, and Merge Workflow <span class="marks">[10 marks]</span></div>
+<p>In this scenario, a repository is created on GitHub first, cloned locally, then the full branching workflow is practiced with <code>staging</code>, a feature branch, <code>--no-ff</code> merges, and cleanup.</p>
 
-    <h3>Step 9: View the Network Graph</h3>
-    <p class="caption">Mock screenshot: terminal git log --graph --oneline --all</p>
-    <img src="screenshots/step22.png" alt="Scenario 2 terminal network graph screenshot" />
-    <p class="caption">Mock screenshot: GitHub network graph</p>
-    <img src="screenshots/step23.png" alt="Scenario 2 GitHub network graph screenshot" />
-  </div>
+<div class="step-block">
+  <h3 class="step">Step 1: Create a New Repository on GitHub</h3>
+  <ul>
+    <li>Name: <code>AIDI2004-Lab1-S2-SurenderSunnyDagar</code></li>
+    <li>Visibility: <b>Public</b>, initialized with a README file</li>
+  </ul>
+  <img class="shot" src="screenshots/step14.png" alt="S2 Step 1 GitHub repository" />
+</div>
 
-    <div class="section note">
-    <h3>Note</h3>
-    <p>All displayed images are mock screenshot placeholders generated for this submission. Real screenshots were not captured; the content is a visual simulation of the required lab steps.</p>
-  </div>
+<div class="step-block">
+  <h3 class="step">Step 2: Clone the Repository</h3>
+  <div class="cmd">git clone https://github.com/SunnyDagar/AIDI2004-Lab1-S2-SurenderSunnyDagar.git
+cd AIDI2004-Lab1-S2-SurenderSunnyDagar</div>
+  <img class="shot" src="screenshots/step15.png" alt="S2 Step 2 clone" />
+</div>
 
-  <div class="section">
-    <h2>Git Log Summaries</h2>
-    <p class="caption">Scenario 1 git log --graph --oneline --all</p>
-    <pre style="background:#f8f8f8;padding:12px;border:1px solid #ddd;">*   df4f7fe (HEAD -> main) Release: Deploy staging to main - Surender (Sunny) Dagar
-|\  
-| * 3585c11 (staging2) Merge feature/add-about-Surender into staging
-|/| 
-| * 9e86a5c Update README with branch info - Surender (Sunny) Dagar
-| * 07e1f6b Add about.txt - Surender (Sunny) Dagar
-|/  
-*   46b88c3 Release: Merge staging into main - Surender (Sunny) Dagar
-|\  
-| * d99a6ce (staging) Merge feature/add-hello-Surender into staging
-|/| 
-| * ef2b4bf Add hello.py - Surender (Sunny) Dagar
-|/  
-* 9179c6a Initial commit - Surender (Sunny) Dagar</pre>
-    <p class="caption">Scenario 2 git log --graph --oneline --all</p>
-    <pre style="background:#f8f8f8;padding:12px;border:1px solid #ddd;">*   f451ee4 (HEAD -> main) Release: Deploy staging to main - Surender (Sunny) Dagar
-|\  
-| * abced7f (staging) Merge feature/add-about-Surender into staging
-|/| 
-| * d574bc9 Add about.txt - Surender (Sunny) Dagar
-|/  
-* fefd8b0 Initial commit - Surender (Sunny) Dagar</pre>
-  </div>
+<div class="step-block">
+  <h3 class="step">Step 3: Create the Staging Branch</h3>
+  <div class="cmd">git checkout -b staging
+git push -u origin staging</div>
+  <img class="shot" src="screenshots/step16.png" alt="S2 Step 3 staging branch" />
+</div>
+
+<div class="step-block">
+  <h3 class="step">Step 4: Create a Feature Branch and Add Files</h3>
+  <div class="cmd">git checkout staging
+git checkout -b feature/add-about-Surender
+
+# about.txt
+Name: Surender (Sunny) Dagar
+Course: AIDI 2004 - AI In Enterprise Applications
+Lab: Lab 1 - Git Version Control
+
+git add about.txt
+git commit -m "Add about.txt - Surender (Sunny) Dagar"
+git push -u origin feature/add-about-Surender</div>
+  <img class="shot" src="screenshots/step17.png" alt="S2 Step 4 feature branch + about.txt" />
+</div>
+
+<div class="step-block">
+  <h3 class="step">Step 5: Make Additional Changes on the Feature Branch</h3>
+  <div class="cmd"># README.md
+# AIDI2004 Lab 1 Scenario 2 - Surender (Sunny) Dagar
+This repository demonstrates the Git branching workflow.
+
+## Branches
+- main: Production
+- staging: Development
+- feature/*: Individual features
+
+git add README.md
+git commit -m "Update README with branch info - Surender (Sunny) Dagar"
+git push origin feature/add-about-Surender</div>
+  <img class="shot" src="screenshots/step18.png" alt="S2 Step 5 README update" />
+</div>
+
+<div class="step-block">
+  <h3 class="step">Step 6: Merge Feature into Staging (--no-ff)</h3>
+  <div class="cmd">git checkout staging
+git pull origin staging
+git merge --no-ff feature/add-about-Surender -m "Merge feature/add-about-Surender into staging"
+git push origin staging</div>
+  <img class="shot" src="screenshots/step19.png" alt="S2 Step 6 merge into staging" />
+</div>
+
+<div class="step-block">
+  <h3 class="step">Step 7: Merge Staging into Main (--no-ff)</h3>
+  <div class="cmd">git checkout main
+git pull origin main
+git merge --no-ff staging -m "Release: Deploy staging to main - Surender (Sunny) Dagar"
+git push origin main</div>
+  <img class="shot" src="screenshots/step20.png" alt="S2 Step 7 merge into main" />
+</div>
+
+<div class="step-block">
+  <h3 class="step">Step 8: Clean Up the Feature Branch</h3>
+  <div class="cmd">git branch -d feature/add-about-Surender
+git push origin --delete feature/add-about-Surender
+git branch -a</div>
+  <img class="shot" src="screenshots/step21.png" alt="S2 Step 8 cleanup" />
+</div>
+
+<div class="step-block">
+  <h3 class="step">Step 9: View the Network Graph</h3>
+  <div class="cmd">git log --graph --oneline --all</div>
+  <img class="shot" src="screenshots/step22.png" alt="S2 Step 9 terminal graph" />
+  <img class="shot" src="screenshots/step23.png" alt="S2 Step 9 GitHub network graph" />
+</div>
+
+<!-- ===================== SUBMISSION + MARKING ===================== -->
+<div class="page-break"></div>
+<div class="band">Submission Requirements</div>
+<ul>
+  <li>This document is submitted with all screenshot fields filled in.</li>
+  <li>Screenshots clearly show the Git commands and their output.</li>
+  <li>My name is visible in folder names, commit messages, and repository names.</li>
+  <li>Both scenarios are completed.</li>
+</ul>
+
+<div class="band">Marking Scheme</div>
+<table class="scheme">
+  <tr><th>Task Description</th><th style="text-align:right;">Marks</th></tr>
+  <tr><td>Scenario 1: Local repo, branching, merges (<code>--no-ff</code>), push to GitHub</td><td style="text-align:right;">5</td></tr>
+  <tr><td>Scenario 1: Clear and accurate screenshots for all steps</td><td style="text-align:right;">5</td></tr>
+  <tr><td>Scenario 2: Clone, branching, merges (<code>--no-ff</code>), push changes</td><td style="text-align:right;">5</td></tr>
+  <tr><td>Scenario 2: Clear and accurate screenshots for all steps</td><td style="text-align:right;">5</td></tr>
+  <tr class="total"><td>Total</td><td style="text-align:right;">20</td></tr>
+</table>
+
+<p class="footer-note">AIDI 2004 — AI In Enterprise Applications — Lab 1 — Surender (Sunny) Dagar</p>
+
 </body>
 </html>
